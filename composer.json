@@ -1,0 +1,25 @@
+{
+    "name": "lyssal/entity-bundle",
+    "description": "Some functionalities to use and manage entities in Symfony.",
+	"license" : "proprietary",
+    "keywords": ["entity"],
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Rémi Leclerc",
+            "homepage": "http://www.lyssal.com/"
+        }
+    ],
+    "require": {
+        "symfony/routing": "~2.8 ~3",
+        "symfony/dependency-injection": "~2.8 ~3",
+        "lyssal/lib-php": "~0.2",
+        "lyssal/entity": "~0.1"
+    },
+    "suggest": {
+    	"doctrine/doctrine-bundle": "Use Doctrine to create your entities"
+    },
+    "autoload":     {
+        "psr-0": { "Lyssal\\EntityBundle": "src" }
+    }
+}

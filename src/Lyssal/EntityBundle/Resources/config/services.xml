@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <imports>
+        <import resource="twig.xml" />
+    </imports>
+    <parameters>
+        <parameter key="lyssal.entity.decorator.manager.class">Lyssal\Entity\Decorator\DecoratorManager</parameter>
+        <parameter key="lyssal.entity.appellation.manager.class">Lyssal\Entity\Appellation\AppellationManager</parameter>
+    </parameters>
+    <services>
+        <service id="lyssal.decorator" class="%lyssal.entity.decorator.manager.class%" />
+        <service id="lyssal.appellation" class="%lyssal.entity.appellation.manager.class%" />
+    </services>
+</container>

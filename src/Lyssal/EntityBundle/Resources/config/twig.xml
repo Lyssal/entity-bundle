@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="lyssal.entity.twig.extension.appellation.class">Lyssal\EntityBundle\Twig\Extension\AppellationExtension</parameter>
+        <parameter key="lyssal.entity.twig.extension.decorator.class">Lyssal\EntityBundle\Twig\Extension\DecoratorExtension</parameter>
+    </parameters>
+    <services>
+        <service id="lyssal.entity.twig.extension.appellation" class="%lyssal.entity.twig.extension.appellation.class%">
+            <argument type="service" id="lyssal.appellation" />
+            <tag name="twig.extension" />
+        </service>
+        <service id="lyssal.entity.twig.extension.decorator" class="%lyssal.entity.twig.extension.decorator.class%">
+            <argument type="service" id="lyssal.decorator" />
+            <tag name="twig.extension" />
+        </service>
+    </services>
+</container>
