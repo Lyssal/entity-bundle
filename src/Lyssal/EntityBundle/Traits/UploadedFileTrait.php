@@ -91,7 +91,8 @@ trait UploadedFileTrait
         if ($file->move($this->getUploadedFileDirectory().DIRECTORY_SEPARATOR.$filename, $replace)) {
             $this->setUploadedFile(null);
             $this->fileUploadIsSuccess = true;
-            return $file->getFilename();
+            $this->uploadedFileFilename = $file->getFilename();
+            return $this->uploadedFileFilename;
         }
 
         throw new IoException('The upload file can not be found.');
