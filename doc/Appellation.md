@@ -93,7 +93,6 @@ And init your appellation service :
 
 ```xml
 <service id="acme.mybundle.appellation.entity" class="Acme\MyBundle\Appellation\EntityAppellation">
-    <argument type="service" id="router" />
     <tag name="lyssal.appellation" />
 </service>
 ```

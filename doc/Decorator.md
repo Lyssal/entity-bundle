@@ -41,7 +41,6 @@ Init your service :
 
 ```xml
 <service id="acme.my_bundle.decorator.my_entity" class="Acme\MyBundle\Decorator\MyEntityDecorator">
-    <argument type="service" id="router" />
     <argument type="service" id="lyssal.decorator" />
     <tag name="lyssal.decorator" />
 </service>
