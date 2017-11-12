@@ -96,3 +96,6 @@ And init your appellation service :
     <tag name="lyssal.appellation" />
 </service>
 ```
+
+Note: Do not use a namespace with class as service ID, the compiler pass will not found it.
+

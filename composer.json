@@ -1,7 +1,7 @@
 {
     "name": "lyssal/entity-bundle",
     "description": "Some functionalities to use and manage entities in Symfony.",
-	"license" : "proprietary",
+	  "license" : "proprietary",
     "keywords": ["entity"],
     "type": "symfony-bundle",
     "authors": [
@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "symfony/dependency-injection": "~2.8|~3",
+        "symfony/dependency-injection": ">=2.8",
         "lyssal/lib-php": "~0.2",
         "lyssal/entity": "~0.1"
     },
