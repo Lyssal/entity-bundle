@@ -58,10 +58,10 @@ If you want to customize the appellation of your entity `AcmeMyBundle:Entity`, s
 <?php
 namespace Acme\MyBundle\Appellation;
 
-use Lyssal\EntityBundle\Appellation\AbstractAppellation;
+use Lyssal\EntityBundle\Appellation\AbstractDefaultAppellation;
 use Acme\MyBundle\Entity\Entity;
 
-class EntityAppellation extends AbstractAppellation
+class EntityAppellation extends AbstractDefaultAppellation
 {
     /**
      * {@inheritDoc}
