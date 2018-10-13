@@ -7,6 +7,8 @@
  */
 namespace Lyssal\EntityBundle\Appellation;
 
+use Lyssal\Entity\Decorator\AbstractDecorator;
+
 /**
  * The abstract appellation which use the __toString method by default.
  */
@@ -17,6 +19,10 @@ abstract class AbstractDefaultAppellation extends AbstractAppellation
      */
     public function appellation($object)
     {
+        if ($object instanceof AbstractDecorator && !method_exists($object, '__toString')) {
+            return $this->appellation($object->getEntity());
+        }
+
         return (string) $object;
     }
 }
