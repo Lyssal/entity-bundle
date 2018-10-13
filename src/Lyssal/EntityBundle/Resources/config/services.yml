@@ -1,0 +1,15 @@
+imports:
+    - { resource: 'services/twig.yml' }
+
+parameters:
+    lyssal.entity.decorator.manager.class: 'Lyssal\Entity\Decorator\DecoratorManager'
+    lyssal.entity.appellation.manager.class: 'Lyssal\Entity\Appellation\AppellationManager'
+
+services:
+    lyssal.decorator:
+        class: '%lyssal.entity.decorator.manager.class%'
+        public: true
+
+    lyssal.appellation:
+        class: '%lyssal.entity.appellation.manager.class%'
+        public: true

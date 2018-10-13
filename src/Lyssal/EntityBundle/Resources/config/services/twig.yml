@@ -1,0 +1,16 @@
+parameters:
+    lyssal.entity.twig.extension.appellation.class: 'Lyssal\EntityBundle\Twig\Extension\AppellationExtension'
+    lyssal.entity.twig.extension.decorator.class: 'Lyssal\EntityBundle\Twig\Extension\DecoratorExtension'
+
+services:
+    lyssal.entity.twig.extension.appellation:
+        class: '%lyssal.entity.twig.extension.appellation.class%'
+        arguments: ['@lyssal.appellation']
+        tags:
+            - { name: 'twig.extension' }
+
+    lyssal.entity.twig.extension.decorator:
+        class: '%lyssal.entity.twig.extension.decorator.class%'
+        arguments: ['@lyssal.decorator']
+        tags:
+            - { name: 'twig.extension' }
