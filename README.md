@@ -8,10 +8,26 @@
 Read the [installation documentation](doc/Installation.md).
 
 
-## Documentation
+## Appellation
 
-* [Appellation](doc/Appellation.md)
-* [Decorator](doc/Decorator.md)
+Use the Appellation to define and easily use the appellation of an entity.
+
+For more informations, read the [Appellation documentation](doc/Appellation.md).
+
+
+## Decorator
+
+Use the Decorator to define new methods in entities using Symfony services.
+
+For more informations, read the [Decorator documentation](doc/Decorator.md).
+
+
+## Uploaded file
+
+You can use our trait in entities to manage an uploaded file.
+
+For more informations, read the [Uploaded file documentation](doc/UploadedFile.md).
+
 
 ### PhpDoc
 
