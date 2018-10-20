@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "symfony/dependency-injection": ">=2.8",
+        "symfony/dependency-injection": "^2.8|^3|^4",
         "lyssal/lib-php": "~0.2",
         "lyssal/entity": "~0.1"
     },
