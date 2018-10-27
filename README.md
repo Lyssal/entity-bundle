@@ -36,6 +36,13 @@ The entity router permits you to automtically generate an URL with your entities
 For more informations, read the [entity router documentation](doc/EntityRouter.md).
 
 
+## Entityable
+
+The Entityable permits to add a linked entity property in an entity without a real relation (as a ManyToOne for example).
+
+For more informations, read the [Entityable documentation](doc/Entityable.md).
+
+
 ### PhpDoc
 
 Execute :
