@@ -8,6 +8,7 @@
 namespace Lyssal\EntityBundle\Appellation;
 
 use Lyssal\Entity\Decorator\AbstractDecorator;
+use Lyssal\EntityBundle\Router\EntityRouterManager;
 
 /**
  * The abstract appellation which use the __toString method by default.
@@ -15,7 +16,25 @@ use Lyssal\Entity\Decorator\AbstractDecorator;
 abstract class AbstractDefaultAppellation extends AbstractAppellation
 {
     /**
-     * @see \Lyssal\Entity\Appellation\AppellationInterface::appelation()
+     * @var \Lyssal\EntityBundle\Router\EntityRouterManager The entity router manager
+     */
+    protected $entityRouterManager;
+
+
+    /**
+     * AbstractDefaultAppellation constructor.
+     *
+     * @param \Lyssal\EntityBundle\Router\EntityRouterManager $entityRouterManager The entity router manager
+     */
+    public function __construct(EntityRouterManager $entityRouterManager)
+    {
+        parent::__construct();
+        $this->entityRouterManager = $entityRouterManager;
+    }
+
+
+    /**
+     * @see \Lyssal\Entity\Appellation\AppellationInterface::appellation()
      */
     public function appellation($object)
     {
@@ -24,5 +43,19 @@ abstract class AbstractDefaultAppellation extends AbstractAppellation
         }
 
         return (string) $object;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function appellationHtml($object)
+    {
+        $url =  $this->entityRouterManager->generate($object);
+
+        if (null !== $url) {
+            return '<a href="'.$url.'">'.parent::appellationHtml($object).'</a>';
+        }
+
+        return parent::appellationHtml($object);
     }
 }
