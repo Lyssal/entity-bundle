@@ -29,6 +29,13 @@ You can use our trait in entities to manage an uploaded file.
 For more informations, read the [Uploaded file documentation](doc/UploadedFile.md).
 
 
+## The entity router
+
+The entity router permits you to automtically generate an URL with your entities.
+
+For more informations, read the [entity router documentation](doc/EntityRouter.md).
+
+
 ### PhpDoc
 
 Execute :

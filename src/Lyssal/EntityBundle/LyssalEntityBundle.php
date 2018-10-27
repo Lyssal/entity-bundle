@@ -7,10 +7,11 @@
  */
 namespace Lyssal\EntityBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Lyssal\EntityBundle\DependencyInjection\Compiler\DecoratorPass;
 use Lyssal\EntityBundle\DependencyInjection\Compiler\AppellationPass;
+use Lyssal\EntityBundle\DependencyInjection\Compiler\DecoratorPass;
+use Lyssal\EntityBundle\DependencyInjection\Compiler\EntityRouterPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * {@inheritDoc}
@@ -29,6 +30,7 @@ class LyssalEntityBundle extends Bundle
         $container
             ->addCompilerPass(new DecoratorPass())
             ->addCompilerPass(new AppellationPass())
+            ->addCompilerPass(new EntityRouterPass())
         ;
     }
 }
