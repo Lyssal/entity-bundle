@@ -23,11 +23,11 @@ class DecoratorPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $appellationServices = $container->findTaggedServiceIds('lyssal.decorator');
-        $appellationManagerService = $container->getDefinition('lyssal.decorator');
+        $services = $container->findTaggedServiceIds('lyssal.decorator');
+        $managerService = $container->getDefinition('lyssal.decorator');
 
-        foreach (array_keys($appellationServices) as $id) {
-            $appellationManagerService->addMethodCall('addDecoratorHandler', array(new Reference($id)));
+        foreach (array_keys($services) as $id) {
+            $managerService->addMethodCall('addDecoratorHandler', array(new Reference($id)));
         }
     }
 }

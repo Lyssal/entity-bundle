@@ -23,11 +23,11 @@ class AppellationPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $appellationServices = $container->findTaggedServiceIds('lyssal.appellation');
-        $appellationManagerService = $container->getDefinition('lyssal.appellation');
+        $services = $container->findTaggedServiceIds('lyssal.appellation');
+        $managerService = $container->getDefinition('lyssal.appellation');
 
-        foreach (array_keys($appellationServices) as $id) {
-            $appellationManagerService->addMethodCall('addAppellationHandler', array(new Reference($id)));
+        foreach (array_keys($services) as $id) {
+            $managerService->addMethodCall('addAppellationHandler', array(new Reference($id)));
         }
     }
 }
