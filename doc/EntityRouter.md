@@ -52,6 +52,6 @@ $entityUrl = $this->container->get('lyssal.entity_router')->generate($myEntity);
 
 You can you the `entity_path()` function:
 
-```yaml
+```twig
 <a href="{{ entity_path(my_entity) }}">Click here to show {{ appellation(my_entity) }}</a>
 ```

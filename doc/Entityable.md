@@ -25,5 +25,4 @@ class MyEntity implements EntityableInterface
     
     // My other properties and methods
 }
-
 ```
