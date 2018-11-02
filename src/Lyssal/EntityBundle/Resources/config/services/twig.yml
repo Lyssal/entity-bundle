@@ -26,3 +26,7 @@ services:
         class: '%lyssal.entity.twig.extension.path.class%'
         tags:
             - { name: 'twig.extension' }
+
+    Lyssal\EntityBundle\Twig\Extension\BreadcrumbExtension:
+        tags:
+            - { name: 'twig.extension' }

@@ -1,0 +1,15 @@
+{%- if breadcrumbs|length > 1 -%}
+    <ul>
+        {%- for breadcrumb in breadcrumbs -%}
+            <li>
+                {%- if breadcrumb.link is not null -%}
+                    <a href="{{ breadcrumb.link }}">
+                {%- endif -%}
+                {{- breadcrumb.label -}}
+                {%- if breadcrumb.link is not null -%}
+                    </a>
+                {%- endif -%}
+            </li>
+        {%- endfor -%}
+    </ul>
+{%- endif -%}

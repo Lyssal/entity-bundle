@@ -43,6 +43,13 @@ The Entityable permits to add a linked entity property in an entity without a re
 For more informations, read the [Entityable documentation](doc/Entityable.md).
 
 
+## The breadcrumbs
+
+You can automatically generate your breadcrumbs.
+
+For more informations, read the [breadcrumbs' documentation](doc/Breadcrumbs.md).
+
+
 ### PhpDoc
 
 Execute :
