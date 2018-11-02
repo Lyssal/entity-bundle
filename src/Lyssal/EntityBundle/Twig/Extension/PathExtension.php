@@ -7,7 +7,6 @@
  */
 namespace Lyssal\EntityBundle\Twig\Extension;
 
-use Lyssal\EntityBundle\Entity\RoutableInterface;
 use Lyssal\EntityBundle\Router\EntityRouterManager;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig_Extension;
