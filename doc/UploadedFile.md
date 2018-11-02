@@ -149,3 +149,9 @@ class MyEntity
     }
 }
 ```
+
+```yaml
+{%- if my_entity.hasImage -%}
+    <a href="{{ entity_path(my_entity) }}"><img src="{{ asset(my_entity.imagePath) }}" alt="{{ appellation(my_entity) }}"></a>
+{%- endif -%}
+```
