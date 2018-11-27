@@ -1,1 +1,3 @@
 /doc/api
+vendor/
+composer.lock
