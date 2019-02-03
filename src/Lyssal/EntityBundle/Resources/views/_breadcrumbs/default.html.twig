@@ -5,7 +5,7 @@
                 {%- if breadcrumb.link is not null -%}
                     <a href="{{ breadcrumb.link }}">
                 {%- endif -%}
-                {{- breadcrumb.label -}}
+                {{- breadcrumb.label|raw('html') -}}
                 {%- if breadcrumb.link is not null -%}
                     </a>
                 {%- endif -%}

@@ -7,7 +7,7 @@
                     {%- if has_link and not loop.last -%}
                         <a href="{{ breadcrumb.link }}">
                     {%- endif -%}
-                    {{- breadcrumb.label -}}
+                    {{- breadcrumb.label|raw('html') -}}
                     {%- if has_link and not loop.last -%}
                         </a>
                     {%- endif -%}
