@@ -13,6 +13,7 @@ services:
         bind:
             $appellationManager: '@lyssal.appellation'
             $entityRouterManager: '@lyssal.entity_router'
+            $breadcrumbRoot: '%lyssal_entity.breadcrumbs.root%'
 
     lyssal.decorator:
         class: '%lyssal.entity.decorator.manager.class%'

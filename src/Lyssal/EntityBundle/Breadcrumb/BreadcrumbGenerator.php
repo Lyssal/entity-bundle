@@ -28,6 +28,11 @@ class BreadcrumbGenerator
      */
     protected $entityRouterManager;
 
+    /**
+     * @var string|null The root element
+     */
+    protected $root;
+
 
     /**
      * BreadcrumbGenerator constructor.
@@ -35,10 +40,11 @@ class BreadcrumbGenerator
      * @param \Lyssal\Entity\Appellation\AppellationManager   $appellationManager  The appellation manager
      * @param \Lyssal\EntityBundle\Router\EntityRouterManager $entityRouterManager The entity router
      */
-    public function __construct(AppellationManager $appellationManager, EntityRouterManager $entityRouterManager)
+    public function __construct(AppellationManager $appellationManager, EntityRouterManager $entityRouterManager, ?string $breadcrumbRoot)
     {
         $this->appellationManager = $appellationManager;
         $this->entityRouterManager = $entityRouterManager;
+        $this->root = $breadcrumbRoot;
     }
 
 
@@ -85,6 +91,14 @@ class BreadcrumbGenerator
      */
     protected function addRoot(array $breadcrumbs, $rootBreadcrumbs = []): array
     {
+        // Add the root element
+        if (null !== $this->root) {
+            if (!is_array($rootBreadcrumbs)) {
+                $rootBreadcrumbs = [$rootBreadcrumbs];
+            }
+            array_unshift($rootBreadcrumbs, $this->root);
+        }
+
         if (!is_array($rootBreadcrumbs)) {
             $formattedRoots = [$this->formatBreadcrumb($rootBreadcrumbs)];
         } else {

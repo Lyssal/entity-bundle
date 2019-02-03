@@ -84,3 +84,15 @@ You also have template for some frameworks:
 {# For Bootstrap 4 #}
 {{ include('@LyssalEntity/_breadcrumbs/bootstrap_4.html.twig', { 'breadcrumbs': lyssal_breadcrumbs(my_entity) }) }}
 ```
+
+
+## Add a root element
+
+To automatically add a root element, specify in your config:
+
+```yaml
+lyssal_entity:
+    breadcrumbs:
+        root: '<a href="/">HOME</a>'
+```
+
