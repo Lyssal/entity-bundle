@@ -59,16 +59,16 @@ If you want to customize the appellation of your entity `AcmeMyBundle:Entity`, s
 namespace Acme\MyBundle\Appellation;
 
 use Lyssal\EntityBundle\Appellation\AbstractDefaultAppellation;
-use Acme\MyBundle\Entity\Entity;
+use Acme\MyBundle\Entity\MyEntity;
 
-class EntityAppellation extends AbstractDefaultAppellation
+class MyEntityAppellation extends AbstractDefaultAppellation
 {
     /**
      * {@inheritDoc}
      */
     public function supports($object)
     {
-        return ($object instanceof Entity);
+        return ($object instanceof MyEntity);
     }
 
     /**
@@ -81,20 +81,28 @@ class EntityAppellation extends AbstractDefaultAppellation
 
     /**
      * {@inheritDoc}
+     * Not neccessary if you use the EntityRouter
      */
     public function appellationHtml($object)
     {
-        return '<a href="'.$this->router->generate('acme_mybundle_entity_view', array('entity' => $object->getId())).'">'.$this->appellation($object).'</a>';
+        return '<a href="'.$this->router->generate('acme_mybundle_myentity_view', array('entity' => $object->getId())).'">'.$this->appellation($object).'</a>';
     }
 }
 ```
 
 And init your appellation service :
 
-```xml
-<service id="acme.mybundle.appellation.entity" class="Acme\MyBundle\Appellation\EntityAppellation">
-    <tag name="lyssal.appellation" />
-</service>
+```yaml
+services:
+    _defaults:
+        autowire: true
+        public: true
+        bind:
+            $entityRouterManager: '@lyssal.entity_router'
+
+    Acme\MyBundle\Appellation\MyEntityAppellation:
+        tags:
+            - { name: 'lyssal.appellation' }
 ```
 
 Note: Do not use a namespace with class as service ID, the compiler pass will not found it.

@@ -1,4 +1,4 @@
-# Decorator
+# Uploaded file
 
 The UploadedFileTrait help you to manage an uploaded file / image in your entity.
 
@@ -124,8 +124,8 @@ class MyEntity
 
         // Here our image in the server
         $image = new Image($this->getUploadedFilePathname());
-        // We minify the image name to remove special characters,
-        // and specify a maxlength for the database
+        // We minify the image filename to remove special characters,
+        // and specify a maxlength (to be sure the varchar will be completely saved in database)
         $image->minify(null, null, true, 255);
         // We get the new filename
         $this->imageFilename = $image->getFilename();
