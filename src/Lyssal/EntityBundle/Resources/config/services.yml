@@ -19,9 +19,15 @@ services:
         class: '%lyssal.entity.decorator.manager.class%'
         public: true
 
+    Lyssal\Entity\Decorator\DecoratorManager:
+        alias: 'lyssal.decorator'
+
     lyssal.appellation:
         class: '%lyssal.entity.appellation.manager.class%'
         public: true
+
+    Lyssal\Entity\Appellation\AppellationManager:
+        alias: 'lyssal.appellation'
 
     lyssal.entity_router:
         class: 'Lyssal\EntityBundle\Router\EntityRouterManager'
