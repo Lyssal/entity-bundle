@@ -33,6 +33,9 @@ services:
         class: 'Lyssal\EntityBundle\Router\EntityRouterManager'
         public: true
 
+    Lyssal\EntityBundle\Router\EntityRouterManager:
+        alias: 'lyssal.entity_router'
+
     Lyssal\EntityBundle\Router\EntityRouter:
         tags:
             - { name: 'lyssal.entity_router' }
