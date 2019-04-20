@@ -3,7 +3,7 @@ imports:
 
 parameters:
     lyssal.entity.decorator.manager.class: 'Lyssal\Entity\Decorator\DecoratorManager'
-    lyssal.entity.appellation.manager.class: 'Lyssal\Entity\Appellation\AppellationManager'
+    lyssal.entity.appellation.manager.class: 'Lyssal\EntityBundle\Appellation\AppellationManager'
     lyssal.entity.router.entity_router_manager.class: 'Lyssal\EntityBundle\Router\EntityRouterManager'
 
 services:
@@ -26,7 +26,11 @@ services:
         class: '%lyssal.entity.appellation.manager.class%'
         public: true
 
+    # Deprecated
     Lyssal\Entity\Appellation\AppellationManager:
+        public: false
+
+    Lyssal\EntityBundle\Appellation\AppellationManager:
         alias: 'lyssal.appellation'
 
     lyssal.entity_router:

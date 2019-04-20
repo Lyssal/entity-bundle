@@ -7,7 +7,7 @@
  */
 namespace Lyssal\EntityBundle\Twig\Extension;
 
-use Lyssal\Entity\Appellation\AppellationManager;
+use Lyssal\EntityBundle\Appellation\AppellationManager;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
@@ -17,7 +17,7 @@ use Twig_SimpleFunction;
 class AppellationExtension extends Twig_Extension
 {
     /**
-     * @var \Lyssal\Entity\Appellation\AppellationManager The appellation manager
+     * @var \Lyssal\EntityBundle\Appellation\AppellationManager The appellation manager
      */
     protected $appellationManager;
 
@@ -25,7 +25,7 @@ class AppellationExtension extends Twig_Extension
     /**
      * Constructor.
      *
-     * @param \Lyssal\Entity\Appellation\AppellationManager $appellationManager The appellation manager
+     * @param \Lyssal\EntityBundle\Appellation\AppellationManager $appellationManager The appellation manager
      */
     public function __construct(AppellationManager $appellationManager)
     {

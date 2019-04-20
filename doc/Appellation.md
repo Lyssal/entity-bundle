@@ -35,7 +35,7 @@ Example of use in Twig :
 
 #### The HTML appellation
 
-By default, it is the same as the simple appellation.
+By default, it is the same as the simple appellation and if your entity implements the `RoutableInterface`, a link (`<a href>`) will be added.
 
 Example of use in PHP :
 
