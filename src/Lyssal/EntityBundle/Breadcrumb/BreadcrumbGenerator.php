@@ -7,10 +7,10 @@
  */
 namespace Lyssal\EntityBundle\Breadcrumb;
 
-use Lyssal\Entity\Appellation\AppellationManager;
 use Lyssal\Entity\Decorator\DecoratorInterface;
 use Lyssal\Entity\Model\Breadcrumb\Breadcrumb;
 use Lyssal\Entity\Model\Breadcrumb\BreadcrumbableInterface;
+use Lyssal\EntityBundle\Appellation\AppellationManager;
 use Lyssal\EntityBundle\Router\EntityRouterManager;
 
 /**
@@ -19,7 +19,7 @@ use Lyssal\EntityBundle\Router\EntityRouterManager;
 class BreadcrumbGenerator
 {
     /**
-     * @var \Lyssal\Entity\Appellation\AppellationManager The appellation manager
+     * @var \Lyssal\EntityBundle\Appellation\AppellationManager The appellation manager
      */
     protected $appellationManager;
 
@@ -37,8 +37,8 @@ class BreadcrumbGenerator
     /**
      * BreadcrumbGenerator constructor.
      *
-     * @param \Lyssal\Entity\Appellation\AppellationManager   $appellationManager  The appellation manager
-     * @param \Lyssal\EntityBundle\Router\EntityRouterManager $entityRouterManager The entity router
+     * @param \Lyssal\EntityBundle\Appellation\AppellationManager $appellationManager  The appellation manager
+     * @param \Lyssal\EntityBundle\Router\EntityRouterManager     $entityRouterManager The entity router
      */
     public function __construct(AppellationManager $appellationManager, EntityRouterManager $entityRouterManager, ?string $breadcrumbRoot)
     {
