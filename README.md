@@ -43,6 +43,11 @@ The Entityable permits to add a linked entity property in an entity without a re
 For more informations, read the [Entityable documentation](doc/Entityable.md).
 
 
+## Traits for entities
+
+Read the [entity traits documentation](doc/EntityTraits.md).
+
+
 ## The breadcrumbs
 
 You can automatically generate your breadcrumbs.
