@@ -27,7 +27,7 @@ trait UploadedFileTrait
 
 
     /**
-     * Get the uploaded file.
+     * @see \Lyssal\Entity\Traits\UploadedFileTrait::getUploadedFile()
      *
      * @return \Symfony\Component\HttpFoundation\File\UploadedFile The uploaded file
      */
@@ -61,12 +61,15 @@ trait UploadedFileTrait
      * Upload the file.
      *
      * @param string|null $filename The new filename, else the upload filename will be used
-     * @return string The filename of the saved file
      * @throws \Lyssal\Exception\IoException If the file can not be saved
      */
     public function uploadFile($filename = null)
     {
-        return $this->saveUploadedFile($filename, false);
+        if (!$this->uploadedFileIsValid()) {
+            return;
+        }
+
+        $this->saveUploadedFile($filename, false);
     }
 
     /**
