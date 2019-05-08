@@ -113,3 +113,10 @@ You can you the `decorator()` function :
 {# Display the avatar of the current user #}
 {{ decorator(app.user).avatarHtml|raw_secure }}
 ```
+
+## Extend the manager
+
+```yaml
+parameters:
+    lyssal.entity.decorator.manager.class: 'App\Doctrine\Decorator\DecoratorManager'
+```
