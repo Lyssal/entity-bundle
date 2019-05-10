@@ -8,6 +8,7 @@
 namespace Lyssal\EntityBundle\Appellation;
 
 use Lyssal\Entity\Appellation\AppellationManager as LyssalAppellationManager;
+use Lyssal\Entity\Decorator\DecoratorInterface;
 use Lyssal\EntityBundle\Entity\RoutableInterface;
 use Lyssal\EntityBundle\Router\EntityRouterManager;
 
@@ -40,13 +41,16 @@ class AppellationManager extends LyssalAppellationManager
     public function appellationHtml($object)
     {
         $appellation = parent::appellationHtml($object);
+        $url = null;
 
         if ($object instanceof RoutableInterface) {
             $url =  $this->entityRouterManager->generate($object);
+        } elseif ($object instanceof DecoratorInterface && $object->getEntity() instanceof RoutableInterface) {
+            $url =  $this->entityRouterManager->generate($object->getEntity());
+        }
 
-            if (null !== $url) {
-                return '<a href="'.$url.'">'.$appellation.'</a>';
-            }
+        if (null !== $url) {
+            return '<a href="'.$url.'">'.$appellation.'</a>';
         }
 
         return $appellation;
