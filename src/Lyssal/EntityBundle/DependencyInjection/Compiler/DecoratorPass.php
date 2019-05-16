@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class DecoratorPass implements CompilerPassInterface
 {
     /**
-     * Process tha compiler pass.
+     * Process the compiler pass.
      *
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The container
      */
