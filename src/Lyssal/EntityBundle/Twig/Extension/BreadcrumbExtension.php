@@ -8,18 +8,35 @@
 namespace Lyssal\EntityBundle\Twig\Extension;
 
 use Lyssal\EntityBundle\Breadcrumb\BreadcrumbGenerator;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * The twig method to generate a breadcrumb.
  */
-class BreadcrumbExtension extends Twig_Extension
+class BreadcrumbExtension extends AbstractExtension
 {
     /**
-     * @var \Lyssal\EntityBundle\Breadcrumb\BreadcrumbGenerator The breadcrumb generator
+     * The templating service.
+     *
+     * @var \Twig\Environment
+     */
+    protected $templating;
+
+    /**
+     * The breadcrumb generator.
+     *
+     * @var \Lyssal\EntityBundle\Breadcrumb\BreadcrumbGenerator
      */
     protected $breadcrumbGenerator;
+
+    /**
+     * The breadcrumb template.
+     *
+     * @var string
+     */
+    private $template;
 
 
     /**
@@ -27,9 +44,11 @@ class BreadcrumbExtension extends Twig_Extension
      *
      * @param \Lyssal\EntityBundle\Breadcrumb\BreadcrumbGenerator $breadcrumbGenerator The breadcrumb generator
      */
-    public function __construct(BreadcrumbGenerator $breadcrumbGenerator)
+    public function __construct(Environment $templating, BreadcrumbGenerator $breadcrumbGenerator, string $breadcrumbTemplate)
     {
+        $this->templating = $templating;
         $this->breadcrumbGenerator = $breadcrumbGenerator;
+        $this->template = $breadcrumbTemplate;
     }
 
 
@@ -39,16 +58,24 @@ class BreadcrumbExtension extends Twig_Extension
     public function getFunctions()
     {
         return[
-            new Twig_SimpleFunction('lyssal_breadcrumbs', [$this, 'breadcrumbs'])
+            new TwigFunction('lyssal_breadcrumb', [$this, 'breadcrumb'], ['is_safe' => ['html']])
         ];
     }
 
 
     /**
      * @see \Lyssal\EntityBundle\Breadcrumb\BreadcrumbGenerator::generate()
+     *
+     * @return string The breadcrumb template
+     *
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function breadcrumbs($entity, $breadcrumbRoot = []): array
+    public function breadcrumb(...$items): string
     {
-        return $this->breadcrumbGenerator->generate($entity, $breadcrumbRoot);
+        return $this->templating->render($this->template, [
+            'breadcrumbs' => $this->breadcrumbGenerator->generate($items),
+        ]);
     }
 }

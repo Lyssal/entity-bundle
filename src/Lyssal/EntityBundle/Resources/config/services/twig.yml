@@ -28,5 +28,7 @@ services:
             - { name: 'twig.extension' }
 
     Lyssal\EntityBundle\Twig\Extension\BreadcrumbExtension:
+        bind:
+            $breadcrumbTemplate: '%lyssal_entity.breadcrumbs.template%'
         tags:
             - { name: 'twig.extension' }

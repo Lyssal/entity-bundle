@@ -49,66 +49,56 @@ class BreadcrumbGenerator
 
 
     /**
-     * Get the breadcrumb array.
+     * Generate the breadcrumb array.
      *
-     * @param mixed               $entity         The entity
-     * @param array<mixed>|string $breadcrumbRoot The first elements of the breadcrumbs
-     * @param array<mixed>        $breadcrumb     (optional) The breadcrumb
-     *
-     * @return array<mixed> The breadcrumb
+     * @param mixed ...$items The breadcrumb items
+     * @return array The breadcrumb
      */
-    public function generate($entity, $breadcrumbRoot = [], array $breadcrumbs = []): array
+    public function generate(...$items): array
     {
-        if (null !== $entity) {
-            array_unshift($breadcrumbs, $this->formatBreadcrumb($entity));
+        $items[] = $this->root;
+        $breadcrumbs = [];
 
-            if ($entity instanceof BreadcrumbableInterface) {
-                $breadcrumbParent = $entity->getBreadcrumbParent();
-                if (null !== $breadcrumbParent) {
-                    return $this->generate($breadcrumbParent, $breadcrumbRoot, $breadcrumbs);
-                }
-            }
-            if (
-                $entity instanceof DecoratorInterface
-                && $entity->getEntity() instanceof BreadcrumbableInterface
-            ) {
-                $breadcrumbParent = $entity->getEntity()->getBreadcrumbParent();
-                if (null !== $breadcrumbParent) {
-                    return $this->generate($breadcrumbParent, $breadcrumbRoot, $breadcrumbs);
-                }
-                return $this->generate($entity->getEntity()->getBreadcrumbParent(), $breadcrumbRoot, $breadcrumbs);
-            }
+        foreach ($items as $item) {
+            $breadcrumbs = array_merge($breadcrumbs, $this->getBreadcrumbPart($item));
         }
 
-        return $this->addRoot($breadcrumbs, $breadcrumbRoot);
+        return array_reverse($breadcrumbs);
     }
 
     /**
-     * Add the first elements in breadcrumbs.
+     * Generate a part of the breadcrumb.
      *
-     * @param array<mixed>        $breadcrumbs     The breadcrumbs
-     * @param array<mixed>|string $rootBreadcrumbs The first elements of the breadcrumbs
+     * @param mixed $item The breadcrumb item
+     * @return array The breadcrumb part
      */
-    protected function addRoot(array $breadcrumbs, $rootBreadcrumbs = []): array
+    protected function getBreadcrumbPart($item): array
     {
-        // Add the root element
-        if (null !== $this->root) {
-            if (!is_array($rootBreadcrumbs)) {
-                $rootBreadcrumbs = [$rootBreadcrumbs];
-            }
-            array_unshift($rootBreadcrumbs, $this->root);
+        if (null === $item) {
+            return [];
         }
 
-        if (!is_array($rootBreadcrumbs)) {
-            $formattedRoots = [$this->formatBreadcrumb($rootBreadcrumbs)];
-        } else {
-            $formattedRoots = [];
-            foreach ($rootBreadcrumbs as $breadcrumb) {
-                $formattedRoots[] = $this->formatBreadcrumb($breadcrumb);
+        $breadcrumbs = [];
+
+        if (is_array($item) || \is_iterable($item)) {
+            foreach ($item as $subItem) {
+                $breadcrumbs = array_merge($breadcrumbs, $this->getBreadcrumbPart($subItem));
             }
+
+            return $breadcrumbs;
         }
 
-        return array_merge($formattedRoots, $breadcrumbs);
+        if ($item instanceof DecoratorInterface && !$item instanceof  BreadcrumbableInterface) {
+            $item = $item->getEntity();
+        }
+
+        $breadcrumbs[] = $this->formatBreadcrumb($item);
+
+        if ($item instanceof BreadcrumbableInterface) {
+            $breadcrumbs = array_merge($breadcrumbs, $this->getBreadcrumbPart($item->getBreadcrumbParent()));
+        }
+
+        return $breadcrumbs;
     }
 
     /**

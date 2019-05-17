@@ -28,6 +28,7 @@ class LyssalEntityExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('lyssal_entity.breadcrumbs.root', $config['breadcrumbs']['root']);
+        $container->setParameter('lyssal_entity.breadcrumbs.template', $config['breadcrumbs']['template']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

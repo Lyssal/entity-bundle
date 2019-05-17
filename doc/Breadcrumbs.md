@@ -34,6 +34,7 @@ class MyEntity implements BreadcrumbableInterface, RoutableInterface
     public function getBreadcrumbParent()
     {
         // Here return the parent entity
+        return $this->myParent;
     }
     
     /**
@@ -41,7 +42,7 @@ class MyEntity implements BreadcrumbableInterface, RoutableInterface
      */
     public function getRouteProperties(): array
     {
-        return ['my route', ['myEntity' => $this->id]];
+        return ['my_route', ['myEntity' => $this->id]];
     }
     
     
@@ -53,36 +54,49 @@ class MyEntity implements BreadcrumbableInterface, RoutableInterface
     public function __toString()
     {
         // Here return the entity name
+        return $this->name;
     }
 }
 ```
 
-## The templates
+Just call the `lyssal_breadcrumb` function in your template to display the breadcrumb.
 
-Call the breacrumb template in your template with a `breadcrumbs` array.
-
-You can generate this array using the `lyssal_breadcrumbs` function.
-Use the entity as first parameter and optionally for the second parameter you can use a string array for the first elements of the breadcrumbs.
-
+The first paramater either an entity or a string.
+If you want to add a parent, set a second parameter.
+If you still want to add an other parent, set a third parameter, etc.
 
 ```twig
-{{ include('@LyssalEntity/_breadcrumbs/default.html.twig', { 'breadcrumbs': lyssal_breadcrumbs(my_entity) }) }}
+{{ lyssal_breadcrumb(my_entity) }}
 
-{# Add the home page as root element #}
-{{ include('@LyssalEntity/_breadcrumbs/default.html.twig', { 'breadcrumbs': lyssal_breadcrumbs(my_entity, '<a href="/">My home page</a>') }) }}
+{# Add a parent element #}
+{{ lyssal_breadcrumb(my_entity, '<a href="#">My parent</a>') }}
 
-{# Add many links #}
-{{ include('@LyssalEntity/_breadcrumbs/default.html.twig', { 'breadcrumbs': lyssal_breadcrumbs(my_entity, ['<a href="/">My home page</a>', 'My breadcrumb']) }) }}
+{# ... > My entity > Edit #}
+{{ lyssal_breadcrumb('edit'|trans, my_entity) }}
 ```
 
-You also have template for some frameworks:
+## The template
 
-```twig
-{# For Foundation 6 #}
-{{ include('@LyssalEntity/_breadcrumbs/foundation_6.html.twig', { 'breadcrumbs': lyssal_breadcrumbs(my_entity) }) }}
+You can define your breadcrumb template in config:
 
-{# For Bootstrap 4 #}
-{{ include('@LyssalEntity/_breadcrumbs/bootstrap_4.html.twig', { 'breadcrumbs': lyssal_breadcrumbs(my_entity) }) }}
+```yaml
+lyssal_entity:
+    breadcrumbs:
+        template: '@App/breadcrumbs.html.twig'
+```
+
+By default, it is a simple HTML list but you also can use a defined template:
+
+
+```yaml
+# If you use Foundation 6
+template: '@LyssalEntity/_breadcrumbs/foundation_6.html.twig'
+
+# If you use Bootstrap 4
+template: '@LyssalEntity/_breadcrumbs/bootstrap_4.html.twig'
+
+# By default
+template: '@LyssalEntity/_breadcrumbs/dedfault.html.twig'
 ```
 
 
