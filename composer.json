@@ -22,7 +22,9 @@
     "suggest": {
     	"doctrine/doctrine-bundle": "Use Doctrine to create your entities"
     },
-    "autoload":     {
-        "psr-0": { "Lyssal\\EntityBundle": "src" }
+    "autoload": {
+        "psr-4": {
+            "Lyssal\\EntityBundle\\": "src/"
+        }
     }
 }
