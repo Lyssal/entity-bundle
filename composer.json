@@ -1,7 +1,7 @@
 {
     "name": "lyssal/entity-bundle",
     "description": "Some functionalities to use and manage entities in Symfony.",
-	  "license" : "proprietary",
+    "license" : "MIT",
     "keywords": ["entity"],
     "type": "symfony-bundle",
     "authors": [
