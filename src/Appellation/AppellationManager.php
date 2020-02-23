@@ -30,7 +30,6 @@ class AppellationManager extends LyssalAppellationManager
      */
     public function __construct(EntityRouterManager $entityRouterManager)
     {
-        parent::__construct();
         $this->entityRouterManager = $entityRouterManager;
     }
 

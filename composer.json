@@ -16,11 +16,8 @@
         "symfony/dependency-injection": "^3.4|^4",
         "symfony/routing": "^3.4|^4",
         "lyssal/lib-php": "~0.2",
-        "lyssal/entity": "~0.2",
+        "lyssal/entity": "^0.3",
         "twig/twig": "^2"
-    },
-    "suggest": {
-    	"doctrine/doctrine-bundle": "Use Doctrine to create your entities"
     },
     "autoload": {
         "psr-4": {

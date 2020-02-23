@@ -57,7 +57,7 @@ class BreadcrumbExtension extends AbstractExtension
      */
     public function getFunctions()
     {
-        return[
+        return [
             new TwigFunction('lyssal_breadcrumb', [$this, 'breadcrumb'], ['is_safe' => ['html']])
         ];
     }

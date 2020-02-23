@@ -1,31 +1,25 @@
 # Installation
 
-1. Update your `composer.json` :
-
-```json
-"require": {
-    "lyssal/entity-bundle": "~x.y"
-}
-```
-
-2. Update with Composer :
+* Install with Composer:
 
 ```sh
-composer update
+composer require lyssal/entity-bundle
 ```
 
-3. Add in your `AppKernel.php` :
+* Tag your services:
 
-```php
-new Lyssal\EntityBundle\LyssalEntityBundle(),
-```
+```yaml
+services:
+    _instanceof:
+        # Only if you create your own decorators
+        Lyssal\Entity\Decorator\DecoratorInterface:
+            tags: ['lyssal.decorator']
 
-## Repository
+        # Only if you create your own appellations
+        Lyssal\Entity\Appellation\AppellationInterface:
+            tags: ['lyssal.appellation']
 
-If you want to use the functionalities of the Lyssal `EntityRepository` or `EntityManager`, you have to define `doctrine.orm.default_repository_class` in your `config.yml` :
-
-```yml
-doctrine:
-    orm:
-        default_repository_class: 'Lyssal\EntityBundle\Repository\EntityRepository'
+        # Only if you create your own routers
+        Lyssal\EntityBundle\Router\EntityRouterInterface:
+            tags: ['lyssal.entity_router']
 ```

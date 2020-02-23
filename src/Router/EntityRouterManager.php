@@ -8,6 +8,7 @@
 namespace Lyssal\EntityBundle\Router;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Traversable;
 
 /**
  * The entity router manager.
@@ -15,19 +16,31 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class EntityRouterManager
 {
     /**
-     * @var \Lyssal\EntityBundle\Router\EntityRouterInterface[] The entity router handlers
+     * @var \Lyssal\EntityBundle\Router\EntityRouterInterface[] The entity routers
      */
-    protected $entityRouterHandlers = [];
+    protected $entityRouters = [];
 
 
     /**
-     * Add an entity router handler.
+     * Add entity routers.
      *
-     * @param \Lyssal\EntityBundle\Router\EntityRouterInterface $entityRouterHandler The entity router handler
+     * @param \Lyssal\EntityBundle\Router\EntityRouterInterface[] $entityRouters The entity routers
      */
-    public function addEntityRouterHandler(EntityRouterInterface $entityRouterHandler): void
+    public function addEntityRouters(Traversable $entityRouters): void
     {
-        $this->entityRouterHandlers[] = $entityRouterHandler;
+        foreach ($entityRouters as $entityRouter) {
+            $this->addEntityRouter($entityRouter);
+        }
+    }
+
+    /**
+     * Add an entity router.
+     *
+     * @param \Lyssal\EntityBundle\Router\EntityRouterInterface $entityRouter The entity router
+     */
+    public function addEntityRouter(EntityRouterInterface $entityRouter): void
+    {
+        $this->entityRouters[] = $entityRouter;
     }
 
     /**
@@ -35,8 +48,8 @@ class EntityRouterManager
      */
     public function generate($entity, $parameters = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): ?string
     {
-        foreach ($this->entityRouterHandlers as $entityRouterHandler) {
-            $url = $entityRouterHandler->generate($entity, $parameters, $referenceType);
+        foreach ($this->entityRouters as $entityRouter) {
+            $url = $entityRouter->generate($entity, $parameters, $referenceType);
             if (null !== $url) {
                 return $url;
             }

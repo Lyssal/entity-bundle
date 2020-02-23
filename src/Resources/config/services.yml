@@ -14,9 +14,21 @@ services:
             $appellationManager: '@lyssal.appellation'
             $entityRouterManager: '@lyssal.entity_router'
 
+    _instanceof:
+        Lyssal\Entity\Decorator\DecoratorInterface:
+            tags: ['lyssal.decorator']
+
+        Lyssal\Entity\Appellation\AppellationInterface:
+            tags: ['lyssal.appellation']
+
+        Lyssal\EntityBundle\Router\EntityRouterInterface:
+            tags: ['lyssal.entity_router']
+
     lyssal.decorator:
         class: '%lyssal.entity.decorator.manager.class%'
         public: true
+        calls:
+            - [ 'addDecorators', [ !tagged lyssal.decorator ] ]
 
     Lyssal\Entity\Decorator\DecoratorManager:
         alias: 'lyssal.decorator'
@@ -24,10 +36,8 @@ services:
     lyssal.appellation:
         class: '%lyssal.entity.appellation.manager.class%'
         public: true
-
-    # Deprecated
-    Lyssal\Entity\Appellation\AppellationManager:
-        public: false
+        calls:
+            - [ 'addAppellations', [ !tagged lyssal.appellation ] ]
 
     Lyssal\EntityBundle\Appellation\AppellationManager:
         alias: 'lyssal.appellation'
@@ -35,6 +45,8 @@ services:
     lyssal.entity_router:
         class: 'Lyssal\EntityBundle\Router\EntityRouterManager'
         public: true
+        calls:
+            - [ 'addEntityRouters', [ !tagged lyssal.entity_router ] ]
 
     Lyssal\EntityBundle\Router\EntityRouterManager:
         alias: 'lyssal.entity_router'
