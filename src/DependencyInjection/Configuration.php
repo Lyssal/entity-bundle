@@ -20,10 +20,9 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treebuilder = new TreeBuilder();
-        $rootNode = $treebuilder->root('lyssal_entity');
+        $treebuilder = new TreeBuilder('lyssal_entity');
 
-        $rootNode
+        $treebuilder->getRootNode()
             ->addDefaultsIfNotSet()
             ->children()
                 ->arrayNode('breadcrumbs')
