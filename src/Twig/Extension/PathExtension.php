@@ -9,13 +9,13 @@ namespace Lyssal\EntityBundle\Twig\Extension;
 
 use Lyssal\EntityBundle\Router\EntityRouterManager;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * The twig method to generate an entity URL.
  */
-class PathExtension extends Twig_Extension
+class PathExtension extends AbstractExtension
 {
     /**
      * @var \Lyssal\EntityBundle\Router\EntityRouterManager The entity router manager
@@ -39,8 +39,8 @@ class PathExtension extends Twig_Extension
      */
     public function getFunctions()
     {
-        return[
-            new Twig_SimpleFunction('entity_path', [$this, 'path'])
+        return [
+            new TwigFunction('entity_path', [$this, 'path']),
         ];
     }
 
