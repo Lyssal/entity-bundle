@@ -7,7 +7,6 @@
  */
 namespace Lyssal\EntityBundle\Router;
 
-use Lyssal\EntityBundle\Router\EntityRouterInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
