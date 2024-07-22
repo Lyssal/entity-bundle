@@ -53,7 +53,7 @@ abstract class AbstractDefaultAppellation extends AbstractAppellation
         $url =  $this->entityRouterManager->generate($object);
 
         if (null !== $url) {
-            return '<a href="'.$url.'">'.parent::appellationHtml($object).'</a>';
+            return '<a href="'.$url.'">'.$this->appellation($object).'</a>';
         }
 
         return parent::appellationHtml($object);

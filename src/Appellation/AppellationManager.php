@@ -39,7 +39,12 @@ class AppellationManager extends LyssalAppellationManager
      */
     public function appellationHtml($object)
     {
-        $appellation = parent::appellationHtml($object);
+        $appellationService = $this->getAppellationService($object);
+
+        if (null !== $this->getAppellationService($object)) {
+            return $appellationService->appellationHtml($object);
+        }
+
         $url = null;
 
         if ($object instanceof RoutableInterface) {
@@ -49,9 +54,9 @@ class AppellationManager extends LyssalAppellationManager
         }
 
         if (null !== $url) {
-            return '<a href="'.$url.'">'.$appellation.'</a>';
+            return '<a href="'.$url.'">'.$this->appellation($object).'</a>';
         }
 
-        return $appellation;
+        return parent::appellationHtml($object);
     }
 }
