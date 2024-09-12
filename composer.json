@@ -11,12 +11,12 @@
         }
     ],
     "require": {
-        "php": "^7|^8",
+        "php": "^8",
         "doctrine/orm": "^2.6",
-        "symfony/config": "^3.4|^4|^5",
-        "symfony/dependency-injection": "^3.4|^4|^5",
-        "symfony/http-kernel": "^3.4|^4|^5",
-        "symfony/routing": "^3.4|^4|^5",
+        "symfony/config": "^5|^6",
+        "symfony/dependency-injection": "^5|^6",
+        "symfony/http-kernel": "^5|^6",
+        "symfony/routing": "^5|^6",
         "lyssal/lib-php": "~0.2",
         "lyssal/entity": "^0.3",
         "twig/twig": "^2"
