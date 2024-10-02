@@ -8,42 +8,28 @@
 namespace Lyssal\EntityBundle\Twig\Extension;
 
 use Lyssal\EntityBundle\Appellation\AppellationManager;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * The Twig methods for the appellation service.
  */
-class AppellationExtension extends Twig_Extension
+class AppellationExtension extends AbstractExtension
 {
-    /**
-     * @var \Lyssal\EntityBundle\Appellation\AppellationManager The appellation manager
-     */
-    protected $appellationManager;
-
-
-    /**
-     * Constructor.
-     *
-     * @param \Lyssal\EntityBundle\Appellation\AppellationManager $appellationManager The appellation manager
-     */
-    public function __construct(AppellationManager $appellationManager)
+    public function __construct(protected readonly AppellationManager $appellationManager)
     {
-        $this->appellationManager = $appellationManager;
     }
-
 
     /**
      * {@inheritDoc}
      */
     public function getFunctions()
     {
-        return array(
-            new Twig_SimpleFunction('appellation', array($this, 'appellation'), array('is_safe' => array('html'))),
-            new Twig_SimpleFunction('appellation_html', array($this, 'appellationHtml'), array('is_safe' => array('html')))
-        );
+        return [
+            new TwigFunction('appellation', [$this, 'appellation'], ['is_safe' => ['html']]),
+            new TwigFunction('appellation_html', [$this, 'appellationHtml'], ['is_safe' => ['html']]),
+        ];
     }
-
 
     /**
      * Get the appellation of the object.
@@ -68,7 +54,6 @@ class AppellationExtension extends Twig_Extension
     {
         return $this->appellationManager->appellationHtml($object);
     }
-
 
     /**
      * {@inheritDoc}

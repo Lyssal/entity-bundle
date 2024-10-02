@@ -17,22 +17,9 @@ use Twig\TwigFunction;
  */
 class PathExtension extends AbstractExtension
 {
-    /**
-     * @var \Lyssal\EntityBundle\Router\EntityRouterManager The entity router manager
-     */
-    protected $entityRouterManager;
-
-
-    /**
-     * PathExtension constructor.
-     *
-     * @param \Lyssal\EntityBundle\Router\EntityRouterManager $entityRouterManager The entity router manager
-     */
-    public function __construct(EntityRouterManager $entityRouterManager)
+    public function __construct(protected readonly EntityRouterManager $entityRouterManager)
     {
-        $this->entityRouterManager = $entityRouterManager;
     }
-
 
     /**
      * @inheritDoc
@@ -43,7 +30,6 @@ class PathExtension extends AbstractExtension
             new TwigFunction('entity_path', [$this, 'path']),
         ];
     }
-
 
     /**
      * @see \Lyssal\EntityBundle\Router\EntityRouterInterface::generate()

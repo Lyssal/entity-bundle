@@ -8,39 +8,26 @@
 namespace Lyssal\EntityBundle\Twig\Extension;
 
 use Lyssal\Entity\Decorator\DecoratorManager;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * The Twig methods for the appellation service.
  */
-class DecoratorExtension extends Twig_Extension
+class DecoratorExtension extends AbstractExtension
 {
-    /**
-     * @var \Lyssal\Entity\Decorator\DecoratorManager The decorator manager
-     */
-    protected $decoratorManager;
-
-
-    /**
-     * Constructor.
-     *
-     * @param \Lyssal\Entity\Decorator\DecoratorManager $decoratorManager The decorator manager
-     */
-    public function __construct(DecoratorManager $decoratorManager)
+    public function __construct(protected readonly DecoratorManager $decoratorManager)
     {
-        $this->decoratorManager = $decoratorManager;
     }
-
 
     /**
      * {@inheritDoc}
      */
     public function getFunctions()
     {
-        return array(
-            new Twig_SimpleFunction('decorator', array($this, 'decorator'))
-        );
+        return [
+            new TwigFunction('decorator', [$this, 'decorator']),
+        ];
     }
 
     /**
@@ -54,7 +41,6 @@ class DecoratorExtension extends Twig_Extension
     {
         return $this->decoratorManager->get($object);
     }
-
 
     /**
      * {@inheritDoc}

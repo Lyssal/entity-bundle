@@ -8,8 +8,6 @@ services:
         autowire: true
         public: false
         bind:
-            $appellationManager: '@lyssal.appellation'
-            $decoratorManager: '@lyssal.decorator'
             $entityRouterManager : '@lyssal.entity_router'
 
     lyssal.entity.twig.extension.appellation:
